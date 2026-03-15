@@ -1,0 +1,3 @@
+# Auth Service Database Schema (v1.0)
+
+...existing content...
