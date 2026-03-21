@@ -1,4 +1,8 @@
-const { requestLoginOtp, verifyLoginOtp } = require("../services/authService");
+const {
+  requestLoginOtp,
+  verifyLoginOtp,
+  getProfileByToken,
+} = require("../services/authService");
 const { ok } = require("../utils/apiResponse");
 
 async function requestOtp(req, res, next) {
@@ -21,7 +25,17 @@ async function verifyOtp(req, res, next) {
   }
 }
 
+async function getProfile(req, res, next) {
+  try {
+    const data = await getProfileByToken(req.headers.authorization);
+    return ok(res, data, "Profile fetched", 200);
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
   requestOtp,
   verifyOtp,
+  getProfile,
 };

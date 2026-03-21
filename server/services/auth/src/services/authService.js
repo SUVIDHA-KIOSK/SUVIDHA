@@ -132,7 +132,69 @@ async function verifyLoginOtp({ identifierType, identifierValue, otp }) {
   };
 }
 
+async function getProfileByToken(authorizationHeader) {
+  if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
+    throw new ApiError(
+      401,
+      "UNAUTHORIZED",
+      "Missing or invalid Authorization header",
+    );
+  }
+
+  const token = authorizationHeader.slice("Bearer ".length).trim();
+
+  let decoded;
+  try {
+    decoded = jwt.verify(token, jwtSecret);
+  } catch {
+    throw new ApiError(401, "INVALID_TOKEN", "Token is invalid or expired");
+  }
+
+  const consumerId = decoded.sub;
+  if (!consumerId) {
+    throw new ApiError(401, "INVALID_TOKEN", "Token subject is missing");
+  }
+
+  const activeSession = await prisma.userSession.findUnique({
+    where: { token },
+    select: { id: true, expiry: true },
+  });
+
+  if (!activeSession || new Date() > activeSession.expiry) {
+    throw new ApiError(401, "SESSION_EXPIRED", "Session is invalid or expired");
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { consumerId },
+    select: {
+      consumerId: true,
+      fullName: true,
+      mobile: true,
+      aadhar: true,
+      email: true,
+      dob: true,
+      gender: true,
+      kycStatus: true,
+      connectionType: true,
+      isActive: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+
+  if (!user) {
+    throw new ApiError(404, "USER_NOT_FOUND", "User profile not found");
+  }
+
+  return {
+    ...user,
+    dob: user.dob ? user.dob.toISOString().split("T")[0] : null,
+    tokenExpiresAt: activeSession.expiry.toISOString(),
+  };
+}
+
 module.exports = {
   requestLoginOtp,
   verifyLoginOtp,
+  getProfileByToken,
 };

@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  color: #0f172a;
+  background: #020617;
+  font-family: "Sora", "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
+  --c-bg-top: #0b1220;
+  --c-bg-bottom: #030712;
+  --c-primary: #22d3ee;
+  --c-secondary: #f59e0b;
+  --c-accent: #10b981;
+  --c-panel: rgba(15, 23, 42, 0.72);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(
+      circle at 14% 10%,
+      rgba(34, 211, 238, 0.23),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 89% 20%,
+      rgba(245, 158, 11, 0.2),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 50% 88%,
+      rgba(16, 185, 129, 0.15),
+      transparent 40%
+    ),
+    linear-gradient(180deg, var(--c-bg-top) 0%, var(--c-bg-bottom) 74%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.glass-panel {
+  background: var(--c-panel);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.theme-card {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 18px 36px rgba(2, 6, 23, 0.18);
+}
+
+.theme-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  background: rgba(34, 211, 238, 0.12);
+  color: #cffafe;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.theme-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  padding: 0.68rem 0.8rem;
+  outline: none;
+  transition:
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.theme-input:focus {
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.22);
+}
+
+.theme-btn-primary {
+  border-radius: 0.75rem;
+  background: linear-gradient(120deg, #22d3ee, #06b6d4);
+  color: #052033;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+
+.theme-btn-primary:hover {
+  filter: brightness(1.04);
+}
+
+.theme-btn-primary:active {
+  transform: translateY(1px);
+}
