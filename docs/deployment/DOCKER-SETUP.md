@@ -248,10 +248,11 @@ SUVIDHA/
 │   ├── Dockerfile
 │   ├── .dockerignore
 │   └── ...
-├── server/services/auth/
-│   ├── Dockerfile
-│   ├── .dockerignore
-│   └── ...
+├── server/services/
+│   ├── auth/
+│   │   ├── Dockerfile
+│   │   ├── .dockerignore
+│   │   └── ...
 ├── docker-compose.yml
 ├── .env.docker.example
 ├── scripts/

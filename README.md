@@ -42,6 +42,8 @@ SUVIDHA/
 ├── api-gateway/                  # API gateway service
 ├── client/                       # React + Vite frontend
 ├── server/                       # Backend services
+│   └── services/
+│       └── auth/
 ├── docs/                         # Documentation
 │   ├── architecture/
 │   ├── database/
@@ -90,7 +92,7 @@ SUVIDHA/
    ```bash
    # Copy example env files
    cp server/.env.example server/.env
-   cp server/api-gateway/.env.example server/api-gateway/.env
+   cp api-gateway/.env.example api-gateway/.env
    ```
 
 4. **Start the Development Environment**
@@ -119,7 +121,7 @@ SUVIDHA/
    npm run dev
 
    # Terminal 2 - API Gateway
-   cd server/api-gateway
+   cd api-gateway
    npm run dev
 
    # Terminal 3 - Auth Service
