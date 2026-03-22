@@ -69,7 +69,8 @@ const validateIdentifierValue = (
   return null;
 };
 
-const sanitizeOtp = (value: string): string => value.replace(/\D/g, "").slice(0, 6);
+const sanitizeOtp = (value: string): string =>
+  value.replace(/\D/g, "").slice(0, 6);
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -181,22 +182,28 @@ export default function LoginPage() {
         </h1>
         <p className="mt-4 max-w-xl text-sm text-slate-300 sm:text-base">
           Secure OTP authentication for utility and civic services. Pick your
-          preferred identifier, request a one-time password, and continue to your
-          profile in under a minute.
+          preferred identifier, request a one-time password, and continue to
+          your profile in under a minute.
         </p>
 
         <div className="mt-7 grid gap-3 text-sm text-slate-200">
           <div className="rounded-xl border border-white/10 bg-white/5 p-3">
             <p className="font-semibold text-white">Step 1</p>
-            <p className="mt-1 text-slate-300">Select identifier type and submit your details.</p>
+            <p className="mt-1 text-slate-300">
+              Select identifier type and submit your details.
+            </p>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-3">
             <p className="font-semibold text-white">Step 2</p>
-            <p className="mt-1 text-slate-300">Receive a 6-digit OTP on your registered contact.</p>
+            <p className="mt-1 text-slate-300">
+              Receive a 6-digit OTP on your registered contact.
+            </p>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-3">
             <p className="font-semibold text-white">Step 3</p>
-            <p className="mt-1 text-slate-300">Verify OTP to access your dashboard and profile.</p>
+            <p className="mt-1 text-slate-300">
+              Verify OTP to access your dashboard and profile.
+            </p>
           </div>
         </div>
       </aside>
@@ -265,10 +272,10 @@ export default function LoginPage() {
                 value={identifierValue}
                 onChange={(event) =>
                   setIdentifierValue(
-                    sanitizeIdentifierValue(identifierType, event.target.value).slice(
-                      0,
-                      identifierMetaMap[identifierType].maxLength,
-                    ),
+                    sanitizeIdentifierValue(
+                      identifierType,
+                      event.target.value,
+                    ).slice(0, identifierMetaMap[identifierType].maxLength),
                   )
                 }
                 inputMode={identifierMetaMap[identifierType].inputMode}

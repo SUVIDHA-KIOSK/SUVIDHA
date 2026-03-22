@@ -73,7 +73,9 @@ function FieldRow({
       <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
         {label}
       </p>
-      <p className={`text-sm text-slate-800 ${mono ? "font-mono break-all" : ""}`}>
+      <p
+        className={`text-sm text-slate-800 ${mono ? "font-mono break-all" : ""}`}
+      >
         {value}
       </p>
     </div>
@@ -204,19 +206,25 @@ export default function ProfilePage() {
 
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-white/15 bg-white/5 p-3">
-            <p className="text-xs uppercase tracking-wide text-slate-400">Consumer</p>
+            <p className="text-xs uppercase tracking-wide text-slate-400">
+              Consumer
+            </p>
             <p className="mt-1 text-sm font-semibold text-white">
               {display(user?.consumerId)}
             </p>
           </div>
           <div className="rounded-xl border border-white/15 bg-white/5 p-3">
-            <p className="text-xs uppercase tracking-wide text-slate-400">Connection</p>
+            <p className="text-xs uppercase tracking-wide text-slate-400">
+              Connection
+            </p>
             <p className="mt-1 text-sm font-semibold text-white">
               {display(user?.connectionType)}
             </p>
           </div>
           <div className="rounded-xl border border-white/15 bg-white/5 p-3">
-            <p className="text-xs uppercase tracking-wide text-slate-400">Status</p>
+            <p className="text-xs uppercase tracking-wide text-slate-400">
+              Status
+            </p>
             <p className="mt-1 text-sm font-semibold text-white">
               {display(user?.isActive ? "Active" : "Inactive")}
             </p>
@@ -287,7 +295,11 @@ export default function ProfilePage() {
             <div className="mt-2">
               <FieldRow label="Token Issued At" value={userTokenIssuedAt} />
               <FieldRow label="Token Expires At" value={userTokenExpiresAt} />
-              <FieldRow label="JWT Subject" value={display(payload?.sub)} mono />
+              <FieldRow
+                label="JWT Subject"
+                value={display(payload?.sub)}
+                mono
+              />
             </div>
           </div>
 
